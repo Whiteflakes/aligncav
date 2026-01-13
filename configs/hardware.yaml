@@ -1,0 +1,65 @@
+# Hardware Configuration
+
+# Motor controller settings
+motor_controller:
+  type: "simulated"  # "arduino" or "simulated"
+  
+  # Arduino settings (when type="arduino")
+  arduino:
+    port: "COM3"
+    baudrate: 115200
+  
+  # Motor parameters
+  motors:
+    num_motors: 4
+    steps_per_revolution: 200
+    microsteps: 16
+    max_speed: 1000  # steps/second
+    acceleration: 500  # steps/second^2
+    step_size_um: 0.1  # micrometers per step
+
+# Video stream settings  
+video_stream:
+  type: "simulated"  # "opencv", "http", or "simulated"
+  
+  # OpenCV settings (when type="opencv")
+  opencv:
+    source: 0  # Camera index or URL
+  
+  # HTTP stream settings (when type="http")
+  http:
+    url: "http://localhost:8080/frame"
+    timeout: 5.0
+  
+  # Common settings
+  width: 640
+  height: 480
+  fps: 30.0
+  exposure: 0.01  # seconds
+  gain: 1.0
+
+# Power meter settings
+power_meter:
+  type: "simulated"  # "thorlabs" or "simulated"
+  
+  # Thorlabs PM100A settings (when type="thorlabs")
+  thorlabs:
+    resource_name: "USB0::0x1313::0x8078::P0000001::INSTR"
+  
+  # Common settings
+  wavelength: 1.064e-6  # 1064 nm
+  auto_range: true
+  averaging: 1
+  timeout: 1.0
+
+# Alignment system settings
+alignment:
+  # Maximum misalignment for initialization
+  max_initial_misalignment: 0.0001  # radians
+  
+  # Target quality for success
+  target_quality: 0.95
+  
+  # Safety limits
+  max_motor_position: 10000  # steps
+  min_motor_position: -10000  # steps

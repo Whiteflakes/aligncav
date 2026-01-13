@@ -1,0 +1,53 @@
+# Classifier Training Configuration
+
+# Model settings
+model:
+  type: "standard"  # "standard" or "deep"
+  num_classes: 121  # (max_mode+1)^2 for max_mode=10
+  input_size: 256
+  dropout: 0.5
+
+# Data settings
+data:
+  use_simulated: true
+  simulated_size: 10000
+  image_size: 256
+  max_mode: 10
+  val_split: 0.2
+  batch_size: 32
+  num_workers: 4
+
+# Augmentation
+augmentation:
+  rotation_limit: 15.0
+  scale_limit: 0.1
+  noise_level: 0.05
+  enable: true
+
+# Training settings
+training:
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  lr_scheduler: "cosine"  # "step", "cosine", "plateau"
+  lr_step_size: 30
+  lr_gamma: 0.1
+
+# Early stopping
+early_stopping:
+  enable: true
+  patience: 10
+  min_delta: 0.0001
+
+# Checkpointing
+checkpoint:
+  dir: "checkpoints"
+  save_best: true
+  save_frequency: 10
+
+# Logging
+logging:
+  level: "INFO"
+  tensorboard: false
+  wandb: false
+  experiment_name: "classifier"
